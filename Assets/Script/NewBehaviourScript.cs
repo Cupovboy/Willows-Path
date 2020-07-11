@@ -9,14 +9,11 @@ public class NewBehaviourScript : MonoBehaviour
     public int speed ;
     public int jump;
     public Transform groundCheck;
-    public GameObject FirePrefab;
-    public Transform FirePoint;
     private bool LookingRight;
     // private Animator anim;
     public float checkRadius;
     public LayerMask whatIsGround;
-    private float shootingTime;
-    public float startTime;
+
 
 
 
@@ -24,7 +21,7 @@ public class NewBehaviourScript : MonoBehaviour
     {
     	rb = GetComponent<Rigidbody2D> ();
         LookingRight = true;
-        shootingTime=0;
+        
        // anim = GetComponent<Animator>();
         
     }
@@ -63,32 +60,10 @@ public class NewBehaviourScript : MonoBehaviour
             transform.eulerAngles = new UnityEngine.Vector3(0, -180, 0);
         }
 
-        if (Input.GetButtonDown("Fire1"))
-        {
-            
-                if (shootingTime <= 0)
-                {
-                shoot();
-                shootingTime = startTime;
-                }
-                else
-                {
-                    shootingTime -= Time.deltaTime;
-                }
-               
-            
-         }
+  
     }
 
-    // invoke the bullet prefab
-    void shoot()
-    {
-      
-            Instantiate(FirePrefab, FirePoint.position, FirePoint.rotation);
-      
-
-    }
-
+   
 
     /* this function set the value of the boolean LookingRight to true if the player is moving on 
      * the right axis and false if he is moving on the left

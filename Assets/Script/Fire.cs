@@ -9,7 +9,7 @@ public class Fire : MonoBehaviour
     private Rigidbody2D rb;
     private Vector2 screenBounds;
     public NewBehaviourScript character;
-
+    public GameObject firePoint;
 
 
     // Use this for initialization
@@ -17,16 +17,8 @@ public class Fire : MonoBehaviour
     {
         rb = this.GetComponent<Rigidbody2D>();
         character = GameObject.FindObjectOfType<NewBehaviourScript>();
-        if (character.getLookingRight())
-        {
-            rb.velocity = new Vector2(speed, 0);
-          
-        }
-        else
-        {
-            rb.velocity = new Vector2(speed*-1, 0);
-            
-        }
+        firePoint = GameObject.Find("FirePoint");
+        rb.velocity = firePoint.transform.right * speed;
 
     }
 

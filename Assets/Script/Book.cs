@@ -21,8 +21,11 @@ public class Book : MonoBehaviour
     void Update()
     {
         Vector3 dif = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-        float rotZ = Mathf.Atan2(dif.y, dif.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0f, 0f, rotZ - 90f);
+        float rotZ = (Mathf.Atan2(dif.y, dif.x) * Mathf.Rad2Deg)-90f;
+
+        if (rotZ < -95f)
+            rotZ = -90f;
+        transform.rotation = Quaternion.Euler(0f, 0f, rotZ);
 
 
         if (Input.GetButtonDown("Fire1"))
@@ -47,10 +50,13 @@ public class Book : MonoBehaviour
     // invoke the bullet prefab
     void shoot()
     {
-
+        Vector3 dif = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+        float rotZ = Mathf.Atan2(dif.y, dif.x) * Mathf.Rad2Deg;
+        
         Instantiate(FirePrefab, FirePoint.position, FirePoint.rotation);
 
-        Debug.Log(FirePoint.up *50f);
+
+        Debug.Log(rotZ-90f);
       
 
 

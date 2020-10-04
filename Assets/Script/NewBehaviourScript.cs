@@ -5,7 +5,7 @@ using UnityEngine;
 public class NewBehaviourScript : MonoBehaviour
 {
 
-    private Rigidbody2D rb;  
+    private Rigidbody rb;  
     public int speed ;
     public int jump;
     public Transform groundCheck;
@@ -19,7 +19,7 @@ public class NewBehaviourScript : MonoBehaviour
 
     private void Awake()
     {
-    	rb = GetComponent<Rigidbody2D> ();
+    	rb = GetComponent<Rigidbody> ();
         LookingRight = true;
         
        // anim = GetComponent<Animator>();

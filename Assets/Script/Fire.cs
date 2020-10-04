@@ -18,7 +18,8 @@ public class Fire : MonoBehaviour
         rb = this.GetComponent<Rigidbody2D>();
         character = GameObject.FindObjectOfType<NewBehaviourScript>();
         firePoint = GameObject.Find("FirePoint");
-        rb.velocity = firePoint.transform.right * speed;
+        Vector3 vector3 = firePoint.transform.right * speed;
+        rb.velocity = vector3;
 
     }
 

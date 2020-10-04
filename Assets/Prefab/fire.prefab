@@ -126,7 +126,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 100
   character: {fileID: 0}
-  firePoint: {fileID: 0}
+  firePoint: {fileID: 5949738648280181760}
 --- !u!95 &1314997765
 Animator:
   serializedVersion: 3

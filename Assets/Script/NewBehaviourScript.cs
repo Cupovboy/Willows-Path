@@ -8,7 +8,7 @@ public class NewBehaviourScript : MonoBehaviour
     private Rigidbody rb;  
     public int speed ;
     public int jump;
-    public Transform groundCheck;
+    public SphereCollider groundCheck;
     private bool LookingRight;
     // private Animator anim;
     public float checkRadius;
@@ -37,16 +37,20 @@ public class NewBehaviourScript : MonoBehaviour
 
     void Update ()
     {
-    	if (Input.GetButtonDown("Jump") && Physics2D.OverlapCircle
-    		(groundCheck.position, checkRadius, whatIsGround))
+    	if (Input.GetButtonDown("Jump") && !Physics.CheckCapsule
+            (groundCheck.bounds.center, new Vector3(groundCheck.bounds.center.x, groundCheck.bounds.min.y, groundCheck.bounds.center.z),
+            groundCheck.radius * .9f, whatIsGround))
     	{
            // anim.SetBool("isJumping", true);
-            rb.velocity = Vector2.up * jump;
-           
+            //rb.velocity = Vector3.up * jump;
+            rb.AddForce(Vector3.up * jump, ForceMode.Impulse);
+            Debug.Log("Entra");
+
         }
         
-        if (!Physics2D.OverlapCircle
-            (groundCheck.position, checkRadius, whatIsGround))
+        if (!Physics.CheckCapsule
+            (groundCheck.bounds.center,new Vector3 (groundCheck.bounds.center.x,groundCheck.bounds.min.y,groundCheck.bounds.center.z),
+            groundCheck.radius*.9f,whatIsGround))
         {
           //  anim.SetBool("isJumping", false);
         }

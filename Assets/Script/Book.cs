@@ -7,9 +7,11 @@ public class Book : MonoBehaviour
 {
 
     public GameObject FirePrefab;
+    public Transform book;
     public Transform FirePoint;
     private float shootingTime;
     public float startTime;
+    float BookAngle;
 
     // Start is called before the first frame update
     void Start()
@@ -20,19 +22,18 @@ public class Book : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 dif = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-        float rotZ = (Mathf.Atan2(dif.y, dif.x) * Mathf.Rad2Deg)-90f;
-
-        if (rotZ < -95f)
-            rotZ = -90f;
-        transform.rotation = Quaternion.Euler(0f, 0f, rotZ);
-
+        BookAngle += Input.GetAxis("Mouse Y") *250* -Time.deltaTime;
+        BookAngle = Mathf.Clamp(BookAngle, 270,360 );
+        book.localRotation = Quaternion.AngleAxis(BookAngle, Vector3.back);
+        
 
         if (Input.GetButtonDown("Fire1"))
         {
 
             if (shootingTime <= 0)
+
             {
+                Debug.Log(BookAngle);
                 shoot();
                 shootingTime = startTime;
             }
@@ -54,9 +55,6 @@ public class Book : MonoBehaviour
         float rotZ = Mathf.Atan2(dif.y, dif.x) * Mathf.Rad2Deg;
         
         Instantiate(FirePrefab, FirePoint.position, FirePoint.rotation);
-
-
-        Debug.Log(rotZ-90f);
       
 
 

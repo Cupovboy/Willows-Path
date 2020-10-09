@@ -8,8 +8,9 @@ public class NewBehaviourScript : MonoBehaviour
     private Rigidbody rb;  
     public int speed ;
     public int jump;
-    public SphereCollider groundCheck;
+    public Transform groundCheck;
     private bool LookingRight;
+    private bool isGrounded;
     // private Animator anim;
     public float checkRadius;
     public LayerMask whatIsGround;
@@ -37,9 +38,10 @@ public class NewBehaviourScript : MonoBehaviour
 
     void Update ()
     {
-    	if (Input.GetButtonDown("Jump") && !Physics.CheckCapsule
-            (groundCheck.bounds.center, new Vector3(groundCheck.bounds.center.x, groundCheck.bounds.min.y, groundCheck.bounds.center.z),
-            groundCheck.radius * .9f, whatIsGround))
+        isGrounded = Physics.CheckSphere(groundCheck.position, 0.15f, whatIsGround);
+
+
+        if (Input.GetButtonDown("Jump") && isGrounded)
     	{
            // anim.SetBool("isJumping", true);
             //rb.velocity = Vector3.up * jump;
@@ -47,13 +49,8 @@ public class NewBehaviourScript : MonoBehaviour
             Debug.Log("Entra");
 
         }
-        
-        if (!Physics.CheckCapsule
-            (groundCheck.bounds.center,new Vector3 (groundCheck.bounds.center.x,groundCheck.bounds.min.y,groundCheck.bounds.center.z),
-            groundCheck.radius*.9f,whatIsGround))
-        {
-          //  anim.SetBool("isJumping", false);
-        }
+
+  
         if (Input.GetAxis("Horizontal") != 0)
         if (LookingRight)
         {

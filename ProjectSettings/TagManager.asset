@@ -8,6 +8,7 @@ TagManager:
   - Firepoint
   - eNEMY
   - Dest
+  - Puente
   layers:
   - Default
   - TransparentFX

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using UnityEngine;
@@ -6,7 +7,7 @@ using UnityEngine;
 public class Fire : MonoBehaviour
 {
     public float speed;
-    private Rigidbody2D rb;
+    private Rigidbody rb;
     private Vector2 screenBounds;
     public NewBehaviourScript character;
     public GameObject firePoint;
@@ -15,7 +16,7 @@ public class Fire : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        rb = this.GetComponent<Rigidbody2D>();
+        rb = this.GetComponent<Rigidbody>();
         character = GameObject.FindObjectOfType<NewBehaviourScript>();
         firePoint = GameObject.Find("FirePoint");
         Vector3 vector3 = firePoint.transform.right * speed;
@@ -29,13 +30,17 @@ public class Fire : MonoBehaviour
         Destroy(rb.gameObject, .55f);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter(Collider other)
     {
-        
-            Destroy(rb.gameObject);
-        
-    }
+        if(other.gameObject.tag=="Dest")
+        {
+            Debug.Log("ENTRO");
+            Destroy(other.gameObject);
+            
+        }
 
+        Destroy(rb.gameObject);
+    }
 
 }
  

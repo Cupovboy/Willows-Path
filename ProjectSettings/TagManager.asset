@@ -9,6 +9,7 @@ TagManager:
   - eNEMY
   - Dest
   - Puente
+  - DeadZone
   layers:
   - Default
   - TransparentFX

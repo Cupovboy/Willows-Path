@@ -33,7 +33,7 @@ public class Book : MonoBehaviour
             if (shootingTime <= 0)
 
             {
-                Debug.Log(BookAngle);
+       
                 shoot();
                 shootingTime = startTime;
             }

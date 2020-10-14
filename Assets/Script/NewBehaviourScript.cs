@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Video;
 
 public class NewBehaviourScript : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class NewBehaviourScript : MonoBehaviour
     // private Animator anim;
     public float checkRadius;
     public LayerMask whatIsGround;
+    public float vida;
 
 
 
@@ -87,4 +89,11 @@ public class NewBehaviourScript : MonoBehaviour
         return LookingRight;
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "DeadZone")
+        {
+            vida --;
+        }
+    }
 }

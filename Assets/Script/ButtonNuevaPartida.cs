@@ -7,6 +7,6 @@ public class ButtonNuevaPartida: MonoBehaviour
 {
     void Start()
     {
-        SceneManager.LoadScene("Nivel01");
+        SceneManager.LoadScene("Scene");
     }
 }
